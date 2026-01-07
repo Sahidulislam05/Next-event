@@ -7,7 +7,6 @@ import clientPromise from "../src/lib/mongodb";
 async function seedUsers() {
   const client = await clientPromise;
   const db = client.db();
-
   const saltRounds = 10;
 
   const {
@@ -42,8 +41,8 @@ async function seedUsers() {
       createdAt: new Date(),
     },
     {
-      username: ADMIN_USERNAME,
-      email: ADMIN_EMAIL,
+      username: USER_USERNAME,
+      email: USER_EMAIL,
       role: "USER",
       password: hashedUserPassword,
       createdAt: new Date(),

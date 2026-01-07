@@ -1,10 +1,17 @@
-import { Button } from "@/components/ui/button";
+import { EventsSection } from "@/components/pages/home/EventsSection";
+import HeroSection from "@/components/pages/home/heroSection";
+import { ServiceSection } from "@/components/pages/home/ServiceSection";
+import { SubscribeSection } from "@/components/pages/home/SubscribeSection";
+import { TestimonialSection } from "@/components/pages/home/TestimonialSection";
 
 export default function HomePage() {
   return (
     <div>
-      <h1 className="text-4xl font-bold">Welcome to My App</h1>
-      <Button>Click Me</Button>
+      <HeroSection></HeroSection>
+      <ServiceSection></ServiceSection>
+      <EventsSection></EventsSection>
+      <TestimonialSection></TestimonialSection>
+      <SubscribeSection></SubscribeSection>
     </div>
   );
 }
