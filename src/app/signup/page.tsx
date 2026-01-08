@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,51 +18,49 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
-import Link from "next/link";
-import React from "react";
-import { useForm } from "react-hook-form";
 
-interface LoginValuesProps {
+interface SignupValues {
+  name: string;
   email: string;
   password: string;
 }
 
-export default function LoginPage() {
+export default function SignupPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginValuesProps>();
+  } = useForm<SignupValues>();
 
   const [showPassword, setShowPassword] = React.useState(false);
 
-  const onSubmitLogin = async (data: LoginValuesProps) => {
-    // console.log("Login Data:", data);
-    // here you can call your login API
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-
-    const result = await res.json();
-    if (result.token) {
-      alert("Login Successful");
-    }
+  const onSubmit = (data: SignupValues) => {
+    console.log("Signup Data:", data);
+    // call your signup API here
   };
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Create your account</CardTitle>
           <CardDescription>
-            Enter your email and password to login
+            Enter your details to register a new account
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit(onSubmitLogin)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <FieldGroup>
+              <Field>
+                <FieldLabel htmlFor="name">Name</FieldLabel>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Your Name"
+                  {...register("name", { required: true })}
+                />
+              </Field>
+
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
@@ -90,12 +90,12 @@ export default function LoginPage() {
               </Field>
 
               <Field>
-                <Button type="submit">Login</Button>
+                <Button type="submit">Sign Up</Button>
                 <Button variant="outline" type="button" className="mt-2">
-                  Login with Google
+                  Sign Up with Google
                 </Button>
                 <FieldDescription className="text-center mt-2">
-                  Don't have an account? <Link href="/signup">Sign up</Link>
+                  Already have an account? <a href="/login">Login</a>
                 </FieldDescription>
               </Field>
             </FieldGroup>
