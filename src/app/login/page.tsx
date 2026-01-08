@@ -15,8 +15,10 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { setToken } from "@/lib/token";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -26,6 +28,7 @@ interface LoginValuesProps {
 }
 
 export default function LoginPage() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -44,8 +47,13 @@ export default function LoginPage() {
     });
 
     const result = await res.json();
+    // console.log(result);
     if (result.token) {
       alert("Login Successful");
+      setToken(result.token);
+      router.push("/");
+    } else {
+      alert("Login failed");
     }
   };
 

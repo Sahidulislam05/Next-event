@@ -5,8 +5,10 @@ import { useCallback, useEffect, useState } from "react";
 
 export function useAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(() => !!getToken());
 
   // Check token on mount
+
   useEffect(() => {
     setIsAuthenticated(!!getToken());
   }, []);

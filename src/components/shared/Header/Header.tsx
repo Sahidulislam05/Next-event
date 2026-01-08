@@ -20,7 +20,7 @@ export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const user = {
-    name: "Touhid",
+    name: "Sahidul",
     email: "user@gmail.com",
   };
 
